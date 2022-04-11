@@ -9,7 +9,7 @@ export const fetchActivities = async () => {
     });
   
     const data= await response.json();
-    console.log(response, "data activity");
+    
     // return data;
     return data;
   };
