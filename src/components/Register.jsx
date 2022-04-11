@@ -1,43 +1,43 @@
 import React, { useState } from "react";
 import { registerUser } from "../api/Users";
-// import { useHistory } from "react-router-dom";
 
-const Register = ({ setIsLoggedIn }) => {
+const Register = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-//   let history = useHistory();
+
+  const userSubmit = async (e) => {
+    e.preventDefault();
+    console.log(username, "username")
+    console.log(password, "password")
+
+    try {
+      const result = await registerUser(username, password);
+      if (result.success) {
+        //Display Error
+      }
+      localStorage.setItem("token", result.data.token);
+      console.log(result);
+      setToken(result.data.token);
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+  };
+
   return (
     <div>
-      <form
-        className="signupbar"
-        onSubmit={async (e) => {
-          e.preventDefault();
-
-          const result = await registerUser(username, password);
-          console.log(result);
-        //   localStorage.setItem("token", result.data.token);
-        //   setIsLoggedIn(true);
-        //   history.push("/profile");
-        }}
-      >
+      <form id="newUser" onSubmit={userSubmit}>
         <input
-          className="signinput"
+          type="text"
+          placeholder="Username"
           value={username}
-          type="text"
-          placeholder="username"
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
+          onChange={(event) => setUsername(event.target.value)}
+        ></input>
         <input
-          className="signinput"
+          type="password"
+          placeholder="Password"
           value={password}
-          type="text"
-          placeholder="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
+          onChange={(event) => setPassword(event.target.value)}
+        ></input>
         <button type="submit">Sign Up</button>
       </form>
     </div>
