@@ -7,17 +7,15 @@ const Register = ({ setToken }) => {
 
   const userSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, "username")
-    console.log(password, "password")
+    // console.log(username, "username")
+    // console.log(password, "password")
 
     try {
       const result = await registerUser(username, password);
       if (result.success) {
-        //Display Error
+        localStorage.setItem("token", result.data.token);
+        setToken(result.data.token);
       }
-      localStorage.setItem("token", result.data.token);
-      console.log(result);
-      setToken(result.data.token);
     } catch (error) {
       console.error("Error: ", error);
     }
