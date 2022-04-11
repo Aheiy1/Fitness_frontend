@@ -41,16 +41,17 @@ export const registerUser = async (username, password) => {
 
   
 
-  // export const fetchMe = async (token) => {
-  //   const response = await fetch(
-  //     'http://fitnesstrac-kr.herokuapp.com/api/users/me',
-  //     {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }
-  //   );
-  //   const data = await response.json();
-  //   return data;
-  // };
+  export const fetchMe = async (token) => {
+    const response = await fetch(
+      'http://fitnesstrac-kr.herokuapp.com/api/users/me',
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.json();
+    // console.log(data, "from fetch me")
+    return data;
+  };
