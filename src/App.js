@@ -1,16 +1,27 @@
 import React, {useEffect, useState} from 'react'
 
 // import { Routines } from './components'
-import { Register, Login, Routines } from './components'
-
-
+import { Register, Login, Routines, MyRoutines } from './components'
+import {fetchMe} from '../src/api/Users'
 // import {fetchActivities} from './api/Activities'
 function App() {
 
   const [token, setToken] = useState("");
+  // const [postId, setPostId] = useState(null);
+  const [userObj, setUserObj] = useState({});
+  const [routines, setRoutines] = useState([]);
 
+ 
   useEffect(() => {
-    console.log(token);
+    const storedToken = localStorage.getItem("token");
+    async function getUser() {
+      const data = await fetchMe(storedToken);
+      setUserObj(data.data);
+    }
+    if (storedToken) {
+      setToken(storedToken);
+      getUser();
+    }
   }, [token]);
 
 
@@ -28,6 +39,7 @@ function App() {
     <Login setToken={setToken} />
     <Register setToken = {setToken}/>
     {/* <Activities /> */}
+    <MyRoutines routines={routines} setRoutines={setRoutines} userObj = {userObj}/>
     <Routines />
     </div>
 
