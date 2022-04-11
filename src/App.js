@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-// import { Activities } from './components'
+
 // import { Routines } from './components'
-import { Register } from './components'
+import { Register, Login, Routines } from './components'
 
 
 // import {fetchActivities} from './api/Activities'
@@ -24,7 +24,12 @@ function App() {
   // }, []);
 
 
-  return <div><Register setToken = {setToken}/></div>
+  return <div>
+    <Login setToken={setToken} />
+    <Register setToken = {setToken}/>
+    {/* <Activities /> */}
+    <Routines />
+    </div>
 
 } 
 export default App;
