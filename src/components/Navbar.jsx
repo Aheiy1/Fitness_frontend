@@ -7,11 +7,14 @@ const Navbar = () => {
   return (
     <nav class="nav-bar">
       <div class="lnk">
-        <Link class="link" to="/">
+        <Link class="link" to="/Home">
           Home
         </Link>
         <Link class="link" to="/MyRoutines">
           My Routines
+        </Link>
+        <Link class="link" to="/MyActivities">
+          My Activities
         </Link>
       </div>
       <h1>Fitness Tracker</h1>

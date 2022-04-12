@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import {Routes, Route} from 'react-router-dom'
+import { BrowserRouter } from "react-router-dom";
+
 
 // import { Routines } from './components'
 import {
@@ -9,6 +12,7 @@ import {
   CreateRoutine,
   LogOut,
   CreateActivity,
+  Navbar
 } from "./components";
 import { fetchMe } from "../src/api/Users";
 import { fetchActivities } from "../src/api/Activities";
@@ -45,7 +49,7 @@ function App() {
       }
     );
     const response = await fetchRoutines.json();
-    console.log(response, 'from routines');
+    // console.log(response, 'from routines');
     setRoutines(response);
   };
   useEffect(() => {
@@ -76,25 +80,20 @@ function App() {
 
   return (
     <div>
-      <Login setToken={setToken} />
-      <LogOut />
-      <Register setToken={setToken} />
-      <CreateRoutine
-        setToken={setToken}
-        routines={routines}
-        setRoutines={setRoutines}
-      />
-      <CreateActivity
-        setToken={setToken}
-        activities={activities}
-        setActivities={setActivities}
-      />
-      <MyRoutines
-        routines={routines}
-        setRoutines={setRoutines}
-        userObj={userObj}
-      />
-      <Routines routines={routines} />
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navbar/>}/>
+        <Route path="/Login" element={<Login setToken={setToken}/>}/>
+        <Route path="/Logout" element={<LogOut/>}/>
+        <Route path="/SignUp" element={<Register setToken={setToken}/>}/>
+        <Route path="/CreateRoutine" element={<CreateRoutine setToken={setToken} routines={routines}
+        setRoutines={setRoutines}/>}/> 
+        <Route path="/MyActivities" element={<CreateActivity setToken={setToken} activities={activities}
+        setActivities={setActivities}/>}/> 
+        <Route path="/MyRoutines" element={<MyRoutines routines={routines} setRoutines={setRoutines} userObj={userObj}/>}/> 
+        <Route path="/Home" element={<Routines routines={routines}/>}/>
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
