@@ -17,7 +17,7 @@ const CreateRoutine = ({ routines, setRoutines, }) => {
         goal
       );
 
-      console.log(result, "result");
+      // console.log(result, "result");
       if (result.name) {
         
         setRoutines([result, ...routines]);
