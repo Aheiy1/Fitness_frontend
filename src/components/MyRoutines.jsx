@@ -4,16 +4,18 @@ import React, { useEffect, useState } from "react";
 // import { DeletePost } from "./index.js";
 
 const MyRoutines = ({ routines }) => {
+  console.log(routines)
   const [myRoutines, setMyRoutines] = useState([]);
   const storedName = localStorage.getItem("username");
-
+console.log(storedName)
   const makeMyRoutines = async () => {
     try {
       const filteredResult = routines.filter(
-        (routine) => routine.creatorName === `${storedName}`
-      );
-      setMyRoutines(filteredResult);
-    } catch (error) {
+        (routine) => routine.creatorName === storedName
+        );
+        console.log('this is it', filteredResult)
+        setMyRoutines(filteredResult);
+      } catch (error) {
       console.error(error);
     }
   };
@@ -27,7 +29,7 @@ const MyRoutines = ({ routines }) => {
       return (
         <>
           <h1 className="welcomeText">Welcome {storedName}</h1>
-          <h2>{"My Routines:"}</h2>
+          <h2>"My Routines:"</h2>
           <div className="cardField">
             {myRoutines.map((myRoutine) => {
               return (
