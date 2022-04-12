@@ -8,8 +8,10 @@ import {
   MyRoutines,
   CreateRoutine,
   LogOut,
+  CreateActivity,
 } from "./components";
 import { fetchMe } from "../src/api/Users";
+import { fetchActivities } from "../src/api/Activities";
 
 // import {getRoutines} from './components/Routines.jsx'
 
@@ -19,6 +21,7 @@ function App() {
   // const [postId, setPostId] = useState(null);
   const [userObj, setUserObj] = useState({});
   const [routines, setRoutines] = useState([]);
+  const [activities, setActivities] = useState([]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -42,12 +45,20 @@ function App() {
       }
     );
     const response = await fetchRoutines.json();
-    console.log(response);
+    console.log(response, 'from routines');
     setRoutines(response);
   };
   useEffect(() => {
     getRoutines();
   }, []);
+
+  useEffect(() => {
+    const getAllActivities = async () => {
+      const AllActivities = await fetchActivities();
+      setActivities(AllActivities);
+    };
+    getAllActivities();
+  });
 
   // useEffect(() => {
 
@@ -73,7 +84,11 @@ function App() {
         routines={routines}
         setRoutines={setRoutines}
       />
-      {/* <Activities /> */}
+      <CreateActivity
+        setToken={setToken}
+        activities={activities}
+        setActivities={setActivities}
+      />
       <MyRoutines
         routines={routines}
         setRoutines={setRoutines}
