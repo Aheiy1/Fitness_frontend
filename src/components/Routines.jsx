@@ -1,26 +1,11 @@
 import { useState, useEffect } from "react";
 
 
-const Routine = () => {
-    const [routines, setRoutines] = useState([]);
-
-
-const getRoutines = async () => {
-    const fetchRoutines = await fetch('http://fitnesstrac-kr.herokuapp.com/api/routines',
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const response = await fetchRoutines.json();
-    console.log(response);
-    setRoutines(response);
-  };
-  useEffect(() => {
+const Routine = ({routines}) => {
     
-    getRoutines();
-  }, []);
+
+
+
 
   
   return (
