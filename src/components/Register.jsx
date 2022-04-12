@@ -12,9 +12,10 @@ const Register = ({ setToken }) => {
 
     try {
       const result = await registerUser(username, password);
-      if (result.success) {
-        localStorage.setItem("token", result.data.token);
-        setToken(result.data.token);
+      if (result.token) {
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("username", username);
+        setToken(result.token);
       }
     } catch (error) {
       console.error("Error: ", error);

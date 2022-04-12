@@ -14,10 +14,11 @@ const Login = ({ setToken }) => {
 
     try {
       const result = await fetchLoginResults(username, password);
-      if (result.success) {
-        localStorage.setItem("token", result.data.token);
+      console.log(result.token, "result from login")
+      if (result.token) {
+        localStorage.setItem("token", result.token);
         localStorage.setItem("username", username);
-        setToken(result.data.token);
+        setToken(result.token);
       }
     } catch (error) {
       console.error("Error: ", error);
