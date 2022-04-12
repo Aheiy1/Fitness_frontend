@@ -86,7 +86,7 @@ function App() {
         <Route path="/Login" element={<Login setToken={setToken}/>}/>
         <Route path="/Logout" element={<LogOut/>}/>
         <Route path="/SignUp" element={<Register setToken={setToken}/>}/>
-        <Route path="/CreateRoutine" element={<CreateRoutine setToken={setToken} routines={routines}
+        <Route path="/Home/CreateRoutine" element={<CreateRoutine setToken={setToken} routines={routines}
         setRoutines={setRoutines}/>}/> 
         <Route path="/MyActivities" element={<CreateActivity setToken={setToken} activities={activities}
         setActivities={setActivities}/>}/> 

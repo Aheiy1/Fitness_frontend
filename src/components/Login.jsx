@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { fetchLoginResults } from "../api/Users";
-// import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-//   let history = useHistory();
+  let navigate = useNavigate ();
 
   const userSubmit = async (e) => {
     e.preventDefault();
@@ -14,10 +14,11 @@ const Login = ({ setToken }) => {
 
     try {
       const result = await fetchLoginResults(username, password);
-      console.log(result.token, "result from login")
+      console.log(result, "result from login")
       if (result.token) {
         localStorage.setItem("token", result.token);
         localStorage.setItem("username", username);
+        localStorage.setItem("creatorId", result.user.id)
         setToken(result.token);
       }
     } catch (error) {
@@ -25,7 +26,7 @@ const Login = ({ setToken }) => {
     } finally {
       setUsername("");
       setPassword("");
-    //   history.push("/");
+      navigate('/home', {replace: true});
     }
   };
 

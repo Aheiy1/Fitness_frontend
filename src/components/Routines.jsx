@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 const Routine = ({routines}) => {
     
 
@@ -10,6 +10,11 @@ const Routine = ({routines}) => {
     <div>
     <>
       <h1>Routines</h1>
+      {localStorage.getItem("token") ? (
+        <Link to="CreateRoutine">
+          <button type="button">Create Routine</button>
+        </Link>
+      ) : null}
       {routines ? routines.map((routine, i) => {
         return (
           <div key={i}>
