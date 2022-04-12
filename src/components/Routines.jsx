@@ -17,10 +17,6 @@ const Routine = ({routines}) => {
             <div>{routine.description}</div>
             <div>{routine.goal}</div>
             <div>{routine.creatorId}</div>
-        
-            <div>{routine.activities.name}</div>
-            <div>{routine.activities.description}</div>
-            <div>{routine.activities.duration}</div>
           </div>
         );
       }): null} 
