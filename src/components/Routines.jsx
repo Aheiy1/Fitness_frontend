@@ -6,7 +6,8 @@ const Routine = ({ routines }) => {
   console.log(routines)
 
   return (
-    
+    <div>
+
     routines.map((routine) => (
       
       <div key={`${routines._i} routines`}>
@@ -20,9 +21,9 @@ const Routine = ({ routines }) => {
       <div> {routine.creatorName}</div>
 
       {
-      routine.activities.map((activities) => {
-        return (
-          <div key={`${activities._id} activities`}>
+        routine.activities.map((activities) => {
+          return (
+            <div key={`${activities._id} activities`}>
             <h1>Activities</h1>
 
             <h3>Activity Name</h3>
@@ -35,16 +36,12 @@ const Routine = ({ routines }) => {
             <div> {activities.duration}</div>
           </div>
    
-        );
-      })}
+   );
+  })}
     </div>
       )
+  </div>
   ));
 };
-// }).then(response => response.json())
-// .then(result => {
-//   console.log(result);
-// })
-// .catch(console.error);
 
 export default Routine;
