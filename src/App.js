@@ -72,7 +72,8 @@ function App() {
         <Route path="/MyActivities" element={<CreateActivity setToken={setToken} activities={activities}
         setActivities={setActivities}/>}/> 
         <Route path="/MyRoutines" element={<MyRoutines setToken={setToken}  routines={routines} setRoutines={setRoutines} userObj={userObj}/>}/> 
-        <Route path="/" element={<Routines routines={routines}/>}/>
+        <Route path="/Activities" element={<Activities activities={activities} setActivities={setActivities} />}/>
+        <Route path="/" element={<Routines routines={routines} />}/>
       </Routes>
       </BrowserRouter>
     </div>

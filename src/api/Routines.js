@@ -31,8 +31,7 @@ export const newRoutine = async (
 
 
   export const fetchMyRoutines = async (token,username) => {
-    console.log(token, "from fetch")
-    console.log(username,"from fetch")
+  
     try {
       const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`, {
         headers: {
@@ -41,7 +40,7 @@ export const newRoutine = async (
         },
       });
       const result = await response.json();
-      console.log(result, "from fetch my routines")
+     
       return result;
     } catch (error) {
       console.error(error);
@@ -76,12 +75,12 @@ export const newRoutine = async (
         method: "DELETE",
         headers: {
           'Content-Type': "application/json",
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
-    const data = await response.json();
-      return data
+    const result = await response.json();
+      return result
   }catch (error){
     console.error(error);
   }

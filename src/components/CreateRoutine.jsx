@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { newRoutine } from "../api/Routines";
+import { useNavigate } from "react-router-dom";
+
 
 const CreateRoutine = ({ routines, setRoutines }) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
+  let navigate = useNavigate();
 
   const userSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      console.log(localStorage.getItem("token"));
       const result = await newRoutine(
         localStorage.getItem("token"),
         name,
@@ -17,8 +19,7 @@ const CreateRoutine = ({ routines, setRoutines }) => {
       );
 
       if (result.name) {
-        setRoutines([...routines, result]);
-        console.log(routines, "setroutines");
+        setRoutines([result, ...routines]);
       }
     } catch (error) {
       console.error("Error: ", error);
@@ -27,10 +28,11 @@ const CreateRoutine = ({ routines, setRoutines }) => {
     setGoal("");
     // setPrice("");
     // setWillDeliver(false);
-    // navigate('/');
+    navigate("/MyRoutines");
   };
   return (
     <div>
+        {localStorage.getItem("token") ? (
       <form className="postCard" onSubmit={userSubmit}>
         <input
           className="name"
@@ -50,6 +52,8 @@ const CreateRoutine = ({ routines, setRoutines }) => {
           <button type="submit">Create Routine</button>
         </div>
       </form>
+     
+      ) : <h1>Please Log In</h1> }
     </div>
   );
 };

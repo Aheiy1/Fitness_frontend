@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-// import { DeletePost } from "./index.js";
-import { fetchMyRoutines, deleteRoutine, getRoutines } from "../api/Routines";
+import { fetchMyRoutines, deleteRoutine} from "../api/Routines";
 
-const MyRoutines = ({setRoutines}) => {
+const MyRoutines = () => {
   const [myRoutines, setMyRoutines] = useState([]);
 
   const [token, setmytoken] = useState("");
@@ -14,30 +13,14 @@ const MyRoutines = ({setRoutines}) => {
   }, []);
   useEffect(() => {
     if (storedName) {
-      console.log(storedName, "stored name");
       async function getMyRoutines() {
         const routines = await fetchMyRoutines(token, storedName);
-        console.log(routines, "from my routines");
+
         setMyRoutines(routines);
       }
       getMyRoutines();
     }
   }, [token]);
-
-  const handleDelete = async (e) => {
-    try {
-      await deleteRoutine(e.target.id);
-
-      const routines = await getRoutines();
-      setRoutines(routines);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // useEffect(() => {
-  //   deleteRoutine();
-  // }, []);
 
   if (storedName) {
     return (
@@ -45,26 +28,28 @@ const MyRoutines = ({setRoutines}) => {
         <h1 className="welcomeText">Welcome {storedName}</h1>
         <h2>{"My Routines:"}</h2>
         <div className="routine">
-          {myRoutines.map((myRoutine) => {
+          {myRoutines.map((routine) => {
             return (
               <>
-                <div className="postCard" key={`${myRoutine._id} myroutine`}>
+                <div className="postCard" key={`${routine._id} myroutine`}>
                   Title:
-                  <div className="name">{myRoutine.name}</div>
-                  <div className="creator">
+                  <div className="titie">{routine.name}</div>
+                  <div className="author">
                     Creator:
-                    <div id="author">{myRoutine.creatorId}</div>
+                    <div id="author">{routine.creatorId}</div>
                   </div>
                   <div className="goal">
                     Goal:
-                    <div id="goal">{myRoutine.goal}</div>
+                    <div id="goal">{routine.goal}</div>
                   </div>
                   <button
-                    type="button"
-                    className="deleteButton"
-                    onClick={(event) => handleDelete(event)}
+                    onClick={async () => {
+                      const routineId = routine.id;
+                      await deleteRoutine(token, routineId);
+                   
+                    }}
                   >
-                    Delete
+                    Delete Routine
                   </button>
                 </div>
               </>
