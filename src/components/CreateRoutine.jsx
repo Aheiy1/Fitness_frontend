@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { newRoutine } from "../api/Routines";
-// import { useNavigate } from "react-router-dom";
 
-const CreateRoutine = ({ routines, setRoutines, }) => {
+const CreateRoutine = ({ routines, setRoutines }) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
-  // let navigate = useNavigate();
+
   const userSubmit = async (e) => {
     e.preventDefault();
 
@@ -17,11 +16,9 @@ const CreateRoutine = ({ routines, setRoutines, }) => {
         goal
       );
 
-      // console.log(result, "result");
       if (result.name) {
-        
         setRoutines([...routines, result]);
-        console.log(routines, "setroutines")
+        console.log(routines, "setroutines");
       }
     } catch (error) {
       console.error("Error: ", error);

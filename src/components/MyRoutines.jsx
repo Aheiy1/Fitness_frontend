@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 // import { DeletePost } from "./index.js";
-import { fetchMyRoutines } from "../api/Routines";
+import { fetchMyRoutines, deleteRoutine, getRoutines } from "../api/Routines";
 
-const MyRoutines = (routines, routineId) => {
-  //   console.log(routines)
-  const [myRoutines, setMyRoutines] = useState([])
-  const [routineId, setRoutineId] = useState("");
+const MyRoutines = ({setRoutines}) => {
+  const [myRoutines, setMyRoutines] = useState([]);
+
   const [token, setmytoken] = useState("");
   const [storedName, setStoredName] = useState("");
-  // console.log(myToken);
-  // const storedName = localStorage.getItem("username");
-  //const token = localStorage.getItem("token");
+
   useEffect(() => {
     setmytoken(localStorage.getItem("token"));
     setStoredName(localStorage.getItem("username"));
@@ -21,54 +18,26 @@ const MyRoutines = (routines, routineId) => {
       async function getMyRoutines() {
         const routines = await fetchMyRoutines(token, storedName);
         console.log(routines, "from my routines");
-        setMyRoutines(routines, ...myRoutines);
+        setMyRoutines(routines);
       }
       getMyRoutines();
-      // console.log(myRoutines, "Line 18!!!");
-      // setMyRoutines(myRoutines);
     }
   }, [token]);
 
-  const deleteMyRoutine = async () => {
+  const handleDelete = async (e) => {
     try {
-      const filteredResult = routines.filter(
-        (routine) => routine.id !== `${routineId}`
-      );
-      console.log('watching', filteredResult)
-      setMyRoutines(filteredResult, ...routines);
+      await deleteRoutine(e.target.id);
 
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    deleteMyRoutine();
-  }, []);
-
-
-  const deleteRoutine = async (token, routineId) => {
-    console.log(routineId)
-    try {
-      const response = await fetch(
-        `http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}`,
-        {
-          method: "DELETE",
-          headers: {
-            'Content-Type': "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const data = await response.json();
-      console.log(response)
-      return data
+      const routines = await getRoutines();
+      setRoutines(routines);
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
-  console.log(myRoutines, "After use effect");
+  // useEffect(() => {
+  //   deleteRoutine();
+  // }, []);
 
   if (storedName) {
     return (
@@ -90,8 +59,12 @@ const MyRoutines = (routines, routineId) => {
                     Goal:
                     <div id="goal">{myRoutine.goal}</div>
                   </div>
-                  <button onClick={() => deleteRoutine(routineId)}>
-                    Delete Post
+                  <button
+                    type="button"
+                    className="deleteButton"
+                    onClick={(event) => handleDelete(event)}
+                  >
+                    Delete
                   </button>
                 </div>
               </>

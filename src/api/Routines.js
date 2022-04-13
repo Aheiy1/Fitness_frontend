@@ -48,7 +48,26 @@ export const newRoutine = async (
     }
   }
 
-
+  export const getRoutines = async () => {
+  try {
+    const response = await fetch(
+      "http://fitnesstrac-kr.herokuapp.com/api/routines",
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    return data
+  } catch (error) {
+    console.error(error)
+  }
+  
+  
+  
+  }
+  
   export const deleteRoutine = async (token, routineId) => {
     try{
     const response = await fetch(
