@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
 // import { DeletePost } from "./index.js";
 import { fetchMyRoutines, deleteRoutine, getRoutines } from "../api/Routines";
-import { MyRoutineCard } from "./index";
 
-
-
-
-const MyRoutines = ({routines, setRoutines}) => {
-  //   console.log(routines)
+const MyRoutines = ({setRoutines}) => {
   const [myRoutines, setMyRoutines] = useState([]);
-  // const [routineId, setRoutineId] = useState("");
+
   const [token, setmytoken] = useState("");
   const [storedName, setStoredName] = useState("");
-  // console.log(myToken);
-  // const storedName = localStorage.getItem("username");
-  //const token = localStorage.getItem("token");
+
   useEffect(() => {
     setmytoken(localStorage.getItem("token"));
     setStoredName(localStorage.getItem("username"));
@@ -25,24 +18,22 @@ const MyRoutines = ({routines, setRoutines}) => {
       async function getMyRoutines() {
         const routines = await fetchMyRoutines(token, storedName);
         console.log(routines, "from my routines");
-        setMyRoutines(routines, ...myRoutines);
+        setMyRoutines(routines);
       }
       getMyRoutines();
-      // console.log(myRoutines, "Line 18!!!");
-      // setMyRoutines(myRoutines);
     }
   }, [token]);
 
   const handleDelete = async (e) => {
-		try {
-			await deleteRoutine(e.target.id);
+    try {
+      await deleteRoutine(e.target.id);
 
-			const routines = await getRoutines();
-			setRoutines(routines);
-		} catch (error) {
-			console.error(error);
-		}
-	};
+      const routines = await getRoutines();
+      setRoutines(routines);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // useEffect(() => {
   //   deleteRoutine();
@@ -54,15 +45,29 @@ const MyRoutines = ({routines, setRoutines}) => {
         <h1 className="welcomeText">Welcome {storedName}</h1>
         <h2>{"My Routines:"}</h2>
         <div className="routine">
-          {myRoutines.map((routine) => {
+          {myRoutines.map((myRoutine) => {
             return (
-              <MyRoutineCard
-                routine={routine}
-                setRoutines={setRoutines}
-                key={routine.id}
-                deleteable={true}
-                
-              />
+              <>
+                <div className="postCard" key={`${myRoutine._id} routine`}>
+                  Title:
+                  <div className="name">{myRoutine.name}</div>
+                  <div className="creator">
+                    Creator:
+                    <div id="author">{myRoutine.creatorId}</div>
+                  </div>
+                  <div className="goal">
+                    Goal:
+                    <div id="goal">{myRoutine.goal}</div>
+                  </div>
+                  <button
+                    type="button"
+                    className="deleteButton"
+                    onClick={(event) => handleDelete(event)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </>
             );
           })}
         </div>

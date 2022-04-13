@@ -58,20 +58,12 @@ function App() {
     };
     getAllActivities();
   }, []);
-  // useEffect(() => {
-  //   const getMyRoutines = async () => {
-  //     const Routines = await fetchMyRoutines();
-  //     setMyRoutines(Routines);
-  //   };
-  //   getMyRoutines();
-  // });
-
+ 
   return (
     <div>
       <BrowserRouter>
         <Navbar />
       <Routes>
-        {/* <Route path="/" element={<Navbar/>}/> */}
         <Route path="/Login" element={<Login setToken={setToken}/>}/>
         <Route path="/Logout" element={<LogOut/>}/>
         <Route path="/SignUp" element={<Register setToken={setToken}/>}/>

@@ -5,35 +5,35 @@ import { LogOut } from "./index.js";
 
 const Navbar = () => {
   return (
-    <nav class="nav-bar">
-      <div class="lnk">
-        <Link class="link" to="/">
+    <nav className="nav-bar">
+      <div className="lnk">
+        <Link className="link" to="/">
           Home
         </Link>
-        <Link class="link" to="/MyRoutines">
+        <Link className="link" to="/MyRoutines">
           My Routines
         </Link>
-        <Link class="link" to="/MyActivities">
+        <Link className="link" to="/MyActivities">
           My Activities
         </Link>
-        <Link class="link" to="/CreateRoutine">
+        <Link className="link" to="/CreateRoutine">
           Create Routine
         </Link>
       </div>
       <h1>Fitness Tracker</h1>
       {!localStorage.getItem("token") ? (
-        <div class="btn">
-          <Link class="log" to="/Login">
+        <div className="btn">
+          <Link className="log" to="/Login">
             <button type="button">Login</button>
           </Link>
-          <Link class="log" to="/SignUp">
+          <Link className="log" to="/SignUp">
             <button type="button">SignUp</button>
           </Link>
         </div>
       ) : (
 
-        <div class="btn">
-          <Link class="log" to="/LogOut">
+        <div className="btn">
+          <Link className="log" to="/LogOut">
             <LogOut />
           </Link>
         </div>
