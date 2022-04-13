@@ -17,6 +17,7 @@ import {
 } from "./components";
 import { fetchMe } from "../src/api/Users";
 import { fetchActivities } from "../src/api/Activities";
+import {getRoutines} from '../src/api/Routines'
 
 
 // import {getRoutines} from './components/Routines.jsx'
@@ -42,22 +43,13 @@ function App() {
     }
   }, [token]);
 
-  const getRoutines = async () => {
-    const fetchRoutines = await fetch(
-      "http://fitnesstrac-kr.herokuapp.com/api/routines",
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const response = await fetchRoutines.json();
-    // console.log(response, 'from routines');
-    setRoutines(response);
-  };
   useEffect(() => {
-    getRoutines();
-  }, []);
+    const getAllRoutines = async () => {
+      const AllRoutines= await getRoutines();
+      setRoutines(AllRoutines);
+    };
+    getAllRoutines();
+  });
 
   useEffect(() => {
     const getAllActivities = async () => {
@@ -73,20 +65,6 @@ function App() {
   //   };
   //   getMyRoutines();
   // });
-
-  // useEffect(() => {
-
-  //   getRoutines();
-  // }, []);
-
-  // useEffect(() => {
-  //   const getAllPosts = async () => {
-  //     const allPosts = await fetchPosts();
-  //     setPosts(allPosts.reverse());
-  //   };
-  //   getAllPosts();
-
-  // }, []);
 
   return (
     <div>
