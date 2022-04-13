@@ -21,7 +21,7 @@ export const newRoutine = async (
       }),
     });
     const data = await response.json();
-    console.log(data, "data");
+    console.error(data, "data");
   
     return data;
   };
@@ -44,6 +44,26 @@ export const newRoutine = async (
       console.log(result, "from fetch my routines")
       return result;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
+
+
+  export const deleteRoutine = async (token, routineId) => {
+    try{
+    const response = await fetch(
+        `http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}`,
+      {
+        method: "DELETE",
+        headers: {
+          'Content-Type': "application/json",
+          'Authorization': `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.json();
+      return data
+  }catch (error){
+    console.error(error);
+  }
+}
