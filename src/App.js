@@ -12,10 +12,12 @@ import {
   CreateRoutine,
   LogOut,
   CreateActivity,
-  Navbar
+  Navbar, 
+  Activities
 } from "./components";
 import { fetchMe } from "../src/api/Users";
 import { fetchActivities } from "../src/api/Activities";
+
 
 // import {getRoutines} from './components/Routines.jsx'
 
@@ -26,6 +28,7 @@ function App() {
   const [userObj, setUserObj] = useState({});
   const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -63,6 +66,13 @@ function App() {
     };
     getAllActivities();
   }, []);
+  // useEffect(() => {
+  //   const getMyRoutines = async () => {
+  //     const Routines = await fetchMyRoutines();
+  //     setMyRoutines(Routines);
+  //   };
+  //   getMyRoutines();
+  // });
 
   // useEffect(() => {
 
@@ -81,17 +91,18 @@ function App() {
   return (
     <div>
       <BrowserRouter>
+        <Navbar />
       <Routes>
-        <Route path="/" element={<Navbar/>}/>
+        {/* <Route path="/" element={<Navbar/>}/> */}
         <Route path="/Login" element={<Login setToken={setToken}/>}/>
         <Route path="/Logout" element={<LogOut/>}/>
         <Route path="/SignUp" element={<Register setToken={setToken}/>}/>
-        <Route path="/Home/CreateRoutine" element={<CreateRoutine setToken={setToken} routines={routines}
+        <Route path="/CreateRoutine" element={<CreateRoutine setToken={setToken} routines={routines}
         setRoutines={setRoutines}/>}/> 
         <Route path="/MyActivities" element={<CreateActivity setToken={setToken} activities={activities}
         setActivities={setActivities}/>}/> 
-        <Route path="/MyRoutines" element={<MyRoutines routines={routines} setRoutines={setRoutines} userObj={userObj}/>}/> 
-        <Route path="/Home" element={<Routines routines={routines}/>}/>
+        <Route path="/MyRoutines" element={<MyRoutines setToken={setToken}  routines={routines} setRoutines={setRoutines} userObj={userObj}/>}/> 
+        <Route path="/" element={<Routines routines={routines}/>}/>
       </Routes>
       </BrowserRouter>
     </div>

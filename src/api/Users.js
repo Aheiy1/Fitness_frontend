@@ -52,6 +52,6 @@ export const registerUser = async (username, password) => {
       }
     );
     const data = await response.json();
-    console.log(data, "from fetch me")
-    return data;
+    console.log(data.username, "from fetch me")
+    return data.username;
   };

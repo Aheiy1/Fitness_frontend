@@ -3,8 +3,8 @@ import { newRoutine } from "../api/Routines";
 // import { useNavigate } from "react-router-dom";
 
 const CreateRoutine = ({ routines, setRoutines, }) => {
-  const [name, setName] = useState([]);
-  const [goal, setGoal] = useState([]);
+  const [name, setName] = useState("");
+  const [goal, setGoal] = useState("");
   // let navigate = useNavigate();
   const userSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +20,8 @@ const CreateRoutine = ({ routines, setRoutines, }) => {
       // console.log(result, "result");
       if (result.name) {
         
-        setRoutines([result, ...routines]);
+        setRoutines([...routines, result]);
+        console.log(routines, "setroutines")
       }
     } catch (error) {
       console.error("Error: ", error);
@@ -29,7 +30,7 @@ const CreateRoutine = ({ routines, setRoutines, }) => {
     setGoal("");
     // setPrice("");
     // setWillDeliver(false);
-    // navigate('/', {replace: true});
+    // navigate('/');
   };
   return (
     <div>
