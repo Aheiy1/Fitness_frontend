@@ -26,7 +26,7 @@ const Login = ({ setToken }) => {
     } finally {
       setUsername("");
       setPassword("");
-      navigate('/home', {replace: true});
+      navigate('/', {replace: true});
     }
   };
 

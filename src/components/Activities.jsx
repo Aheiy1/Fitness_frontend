@@ -1,9 +1,10 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useEffect }  from "react";
+
 import { fetchActivities } from "../api/Activities";
 
-const Activities = () => {
-  const [ activities, setActivities ] = useState([]);
+const Activities = ({activities, setActivities}) => {
+  // const [ activities, setActivities ] = useState([]);
+
 
   useEffect(() => {
     const getAllActivities = async () => {
@@ -19,7 +20,6 @@ const Activities = () => {
       <>
         <h1>Activities</h1>
         {activities ? activities.map((activity, i) => {
-        //   console.log("activity: ", activity);
           return (
             <div key={i}>
               <h3>{activity.name}</h3>

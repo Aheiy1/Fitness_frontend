@@ -16,6 +16,7 @@ const Navbar = () => {
         <Link className="link" to="/MyActivities">
           My Activities
         </Link>
+      
         <Link className="link" to="/CreateRoutine">
           Create Routine
         </Link>

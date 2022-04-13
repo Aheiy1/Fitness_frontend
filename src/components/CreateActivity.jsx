@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { newActivity } from "../api/Activities";
+import { useNavigate } from "react-router-dom";
 
 const CreateActivity = ({ activities, setActivities }) => {
-  const [name, setName] = useState([]);
-  const [description, setDescription] = useState([]);
-  // let navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  let navigate = useNavigate();
   const userSubmit = async (e) => {
     e.preventDefault();
 
@@ -17,7 +18,7 @@ const CreateActivity = ({ activities, setActivities }) => {
       );
 
       console.log(result, "result");
-      if (result.name) {
+      if (result) {
         setActivities([result, ...activities]);
       }
     } catch (error) {
@@ -27,7 +28,7 @@ const CreateActivity = ({ activities, setActivities }) => {
     setDescription("");
     // setPrice("");
     // setWillDeliver(false);
-    // navigate('/', {replace: true});
+    navigate('/Activities', {replace: true});
   };
   return (
     <div>

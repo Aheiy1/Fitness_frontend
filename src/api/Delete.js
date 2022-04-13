@@ -2,7 +2,7 @@
 
 
 export const deleteRoutine = async (token, routineId) => {
-  console.log(routineId);
+
   try {
     const response = await fetch(
       `http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}`,
@@ -33,19 +33,19 @@ export const deleteRoutine = async (token, routineId) => {
 // }
 
 // DELETE /api/routine_activities/:routineActivityId (**)
-export const deletePost2 = async (token, postId) => {
-    const response = await fetch(
-        'http://fitnesstrac-kr.herokuapp.com/api/routine_activities/11',
-      {
-        method: "DELETE",
-        headers: {
-          'Content-Type': "application/json",
-          'Authorization': `Bearer ${token}`,
-        },
-      }
-    );
-    const data = await response.json();
-  };
+// export const deletePost2 = async (token, postId) => {
+//     const response = await fetch(
+//         'http://fitnesstrac-kr.herokuapp.com/api/routine_activities/11',
+//       {
+//         method: "DELETE",
+//         headers: {
+//           'Content-Type': "application/json",
+//           'Authorization': `Bearer ${token}`,
+//         },
+//       }
+//     );
+//     const data = await response.json();
+//   };
 
 //   sample response
 //      {
