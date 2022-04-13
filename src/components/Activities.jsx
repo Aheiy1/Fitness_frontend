@@ -12,6 +12,8 @@ const Activities = () => {
     };
     getAllActivities();
   });
+
+  
   return (
     <div>
       <>

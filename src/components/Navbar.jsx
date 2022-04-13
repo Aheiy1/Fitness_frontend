@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav class="nav-bar">
       <div class="lnk">
-        <Link class="link" to="/Home">
+        <Link class="link" to="/">
           Home
         </Link>
         <Link class="link" to="/MyRoutines">
@@ -15,6 +15,9 @@ const Navbar = () => {
         </Link>
         <Link class="link" to="/MyActivities">
           My Activities
+        </Link>
+        <Link class="link" to="/CreateRoutine">
+          Create Routine
         </Link>
       </div>
       <h1>Fitness Tracker</h1>
