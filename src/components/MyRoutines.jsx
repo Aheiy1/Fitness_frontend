@@ -48,7 +48,7 @@ const MyRoutines = ({setRoutines}) => {
           {myRoutines.map((myRoutine) => {
             return (
               <>
-                <div className="postCard" key={`${myRoutine._id} routine`}>
+                <div className="postCard" key={`${myRoutine._id} myroutine`}>
                   Title:
                   <div className="name">{myRoutine.name}</div>
                   <div className="creator">
