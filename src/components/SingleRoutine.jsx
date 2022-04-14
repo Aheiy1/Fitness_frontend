@@ -9,6 +9,7 @@ const SingleRoutine = ({i,routine, myRoutines, setMyRoutines }) => {
     const [showForm, setShowForm] = useState(false);
     const [routineId, setRoutineId] = useState([]);
     const token = localStorage.getItem("token")
+    const storedName = localStorage.getItem("username")
     let navigate = useNavigate()
     return (
         <div className="postCard" key={i}>
@@ -41,7 +42,7 @@ const SingleRoutine = ({i,routine, myRoutines, setMyRoutines }) => {
       >
         Edit
       </button>
-      {showForm  ? (
+      {showForm && storedName === routine.creatorName ? (
         <UpdateRoutine
          routineId={routineId}
          setRoutineId={setRoutineId}
