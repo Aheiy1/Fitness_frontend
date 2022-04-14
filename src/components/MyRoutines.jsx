@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchMyRoutines, deleteRoutine} from "../api/Routines";
+import { fetchMyRoutines, deleteRoutine } from "../api/Routines";
 
 const MyRoutines = () => {
   const [myRoutines, setMyRoutines] = useState([]);
@@ -46,7 +46,6 @@ const MyRoutines = () => {
                     onClick={async () => {
                       const routineId = routine.id;
                       await deleteRoutine(token, routineId);
-                   
                     }}
                   >
                     Delete Routine

@@ -1,11 +1,12 @@
-import React, { useEffect }  from "react";
+import React, {useEffect, useState} from "react";
 
-import { fetchActivities } from "../api/Activities";
-
-const Activities = ({activities, setActivities}) => {
-  // const [ activities, setActivities ] = useState([]);
+import { fetchActivities } from '../api/Activities'
 
 
+const Activities = () => {
+  const [ activities, setActivities ] = useState([]);
+
+console.log(activities)
   useEffect(() => {
     const getAllActivities = async () => {
       const AllActivities = await fetchActivities();

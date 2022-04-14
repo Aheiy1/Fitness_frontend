@@ -6,6 +6,7 @@ const Routines = () => {
   const [routines, setRoutines] = useState([]);
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
+  
   useEffect(() => {
     const getAllRoutines = async () => {
       const AllRoutines = await getRoutines();
