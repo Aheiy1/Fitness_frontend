@@ -6,7 +6,7 @@ const Routines = () => {
   const [routines, setRoutines] = useState([]);
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
-  
+
   useEffect(() => {
     const getAllRoutines = async () => {
       const AllRoutines = await getRoutines();
@@ -36,11 +36,10 @@ const Routines = () => {
         </button>
       ) : null}
 
-<h1 className="title">Activities</h1>
+      <h1 className="title">Activities</h1>
       {routine.activities.map((activity, i) => {
         return (
           <div className="postcard" key={i}>
-
             <h3 className="title">Activity Name</h3>
             <div id="id"> {activity.name}</div>
             <h3 className="description">Description </h3>

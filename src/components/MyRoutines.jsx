@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { fetchMyRoutines, deleteRoutine } from "../api/Routines";
+import { fetchMyRoutines } from "../api/Routines";
+import SingleRoutine from "./SingleRoutine";
 
 const MyRoutines = () => {
   const [myRoutines, setMyRoutines] = useState([]);
@@ -28,29 +29,15 @@ const MyRoutines = () => {
         <h1 className="welcomeText">Welcome {storedName}</h1>
         <h2>{"My Routines:"}</h2>
         <div className="routine">
-          {myRoutines.map((routine) => {
+          {myRoutines.map((routine, i) => {
             return (
               <>
-                <div className="postCard" key={`${routine._id} myroutine`}>
-                  Title:
-                  <div className="titie">{routine.name}</div>
-                  <div className="author">
-                    Creator:
-                    <div id="author">{routine.creatorId}</div>
-                  </div>
-                  <div className="goal">
-                    Goal:
-                    <div id="goal">{routine.goal}</div>
-                  </div>
-                  <button
-                    onClick={async () => {
-                      const routineId = routine.id;
-                      await deleteRoutine(token, routineId);
-                    }}
-                  >
-                    Delete Routine
-                  </button>
-                </div>
+                <SingleRoutine
+                  i={i}
+                  routine={routine}
+                  myRoutines={myRoutines}
+                  setMyRoutines={setMyRoutines}
+                />
               </>
             );
           })}
