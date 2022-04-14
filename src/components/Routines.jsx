@@ -17,7 +17,7 @@ const Routines = () => {
 
   return routines.map((routine, i) => (
     <div className="postCard" key={i}>
-      <h1>Routines</h1>
+      <h1>Routine</h1>
       <h3 className="title">Routine Title</h3>
       <div id="name"> {routine.name}</div>
       <h3 className="title">Goal</h3>
@@ -36,10 +36,10 @@ const Routines = () => {
         </button>
       ) : null}
 
+<h1 className="title">Activities</h1>
       {routine.activities.map((activity, i) => {
         return (
           <div className="postcard" key={i}>
-            <h1 className="title">Activities</h1>
 
             <h3 className="title">Activity Name</h3>
             <div id="id"> {activity.name}</div>
