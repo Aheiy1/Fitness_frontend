@@ -13,6 +13,7 @@ import {
   CreateActivity,
   Navbar,
   Activities,
+  UpdateActivity
 } from "./components";
 import { fetchMe } from "../src/api/Users";
 import { fetchActivities } from "../src/api/Activities";
@@ -24,6 +25,7 @@ function App() {
   const [userObj, setUserObj] = useState({});
   const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
+  const [activityId, setActivityId] = useState(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -71,7 +73,7 @@ function App() {
               />
             }
           />
-            <Route path="/Activities" element={<Activities />} />
+            <Route path="/Activities" element={<Activities activityId={activityId} setActivityId={setActivityId} />} />
           <Route
             path="/MyActivities"
             element={

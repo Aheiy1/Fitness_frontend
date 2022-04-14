@@ -11,5 +11,6 @@ export {default as CreateRoutine} from './CreateRoutine.jsx'
 export {default as LogOut} from './LogOut'
 export {default as Navbar} from './Navbar'
 export {default as CreateActivity} from './CreateActivity'
+export {default as UpdateActivity} from './UpdateActivity'
 // export {default as RoutineCard} from './RoutineCard'
 
