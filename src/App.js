@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     const getAllRoutines = async () => {
       const AllRoutines = await getRoutines();
-      setRoutines(AllRoutines);
+      setRoutines(AllRoutines.reverse());
     };
     getAllRoutines();
   });

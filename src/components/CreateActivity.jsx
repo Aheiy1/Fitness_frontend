@@ -18,8 +18,8 @@ const CreateActivity = ({ activities, setActivities }) => {
       );
 
       console.log(result, "result");
-      if (result) {
-        setActivities([result, ...activities]);
+      if (result.name) {
+        setActivities([...activities, result.name]);
       }
     } catch (error) {
       console.error("Error: ", error);

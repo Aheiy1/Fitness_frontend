@@ -19,7 +19,7 @@ const CreateRoutine = ({ routines, setRoutines }) => {
       );
 
       if (result.name) {
-        setRoutines([result, ...routines]);
+        setRoutines([...routines, result.name]);
       }
     } catch (error) {
       console.error("Error: ", error);
