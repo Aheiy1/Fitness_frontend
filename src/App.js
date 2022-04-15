@@ -74,7 +74,7 @@ function App() {
           />
           <Route path="/Activities" element={<Activities />} />
           <Route
-            path="/MyActivities"
+            path="/Create Activity"
             element={
               <CreateActivity
                 setToken={setToken}

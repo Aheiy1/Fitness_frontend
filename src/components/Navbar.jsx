@@ -13,8 +13,8 @@ const Navbar = () => {
         <Link className="link" to="/MyRoutines">
           My Routines
         </Link>
-        <Link className="link" to="/MyActivities">
-          My Activities
+        <Link className="link" to="/CreateActivity">
+         Create Activity
         </Link>
         <Link className="link" to="/Activities">
           Activities

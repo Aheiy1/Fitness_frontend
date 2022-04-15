@@ -9,11 +9,14 @@ const SingleActivity = ({
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [activityId, setActivityId] = useState([]);
+  const token = localStorage.getItem("token")
+  
+  
   return (
     <div key={i}>
       <h3>{activity.name}</h3>
       <div>{activity.description}</div>
-
+{ token ? (
       <button
         type="button"
         className="addedbtn"
@@ -24,7 +27,8 @@ const SingleActivity = ({
       >
         Edit
       </button>
-      {showForm  ? (
+      ) : null}
+      {showForm ? (
         <UpdateActivity
           activityId={activityId}
           setActivityId={setActivityId}
