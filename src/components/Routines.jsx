@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import { getRoutines, deleteRoutine } from "../api/Routines";
+import AttachActivity from "./AttachActivity";
+import { newActivity } from "../api/Activities";
 
 const Routines = () => {
   const [routines, setRoutines] = useState([]);
@@ -48,6 +50,7 @@ const Routines = () => {
             <div className="description"> {activity.count}</div>
             <h3 className="title">Duration</h3>
             <div className="description"> {activity.duration}</div>
+            <AttachActivity />
           </div>
         );
       })}
