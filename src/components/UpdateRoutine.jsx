@@ -46,7 +46,6 @@ const UpdateRoutine = ({
       console.log(newRoutines);
       setMyRoutines(newRoutines);
       console.log(myRoutines);
-      setGoal("");
       setRoutineId(null);
     }
   };

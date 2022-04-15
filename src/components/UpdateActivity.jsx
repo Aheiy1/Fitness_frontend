@@ -62,6 +62,7 @@ const UpdateActivity = ({
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></input>
+
         <button type="submit" className="btn">
           Submit
         </button>
