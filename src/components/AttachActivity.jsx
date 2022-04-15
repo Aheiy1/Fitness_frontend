@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { addActivity} from "../api/Activities";
+import { addActivity } from "../api/Activities";
 
-  const AttachActivity = ({ routineId, activities}) => {
+const AttachActivity = ({ routineId, activities }) => {
   const [count, setCount] = useState([]);
   const [duration, setDuration] = useState([]);
   const [activityId, setActivityId] = useState(null);
   const token = localStorage.getItem("token");
-
 
   return (
     <div>
@@ -20,8 +19,7 @@ import { addActivity} from "../api/Activities";
         <h2>Add Activity</h2>
         <div>Select activity</div>
 
-
-       <select
+        <select
           onChange={(e) => {
             e.preventDefault();
             setActivityId(e.target.value);
