@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Navigate } from 'react-router-dom';
-import  newActivity from '../api/Activities';
+import  addActivitytoRoutine from '../api/Activities';
 
 const AttachActivity = () => {
     const [count, setCount] = useState(Number)
@@ -11,7 +11,7 @@ const AttachActivity = () => {
 
     const activitySubmit = async ()=>{
         try {
-            const result = await newActivity(
+            const result = await addActivitytoRoutine(
                 localStorage.getItem("token"),
                 count,
                 duration,
