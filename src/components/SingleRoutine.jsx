@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { deleteRoutine } from '../api/Routines';
 import UpdateRoutine from './UpdateRoutine';
 import { useNavigate } from 'react-router-dom';
-import AttachActivity from './AttachActivity';
+
 
 const SingleRoutine = ({i,routine, myRoutines, setMyRoutines, routines, activities }) => {
 
