@@ -15,10 +15,10 @@ export const fetchActivities = async () => {
   return data;
 };
 
-export const newActivity = async (token, name, description) => {
+export const newActivity = async (token, routineId, activivityId, count, duration) => {
   console.log(token, "new routine");
   const response = await fetch(
-    "http://fitnesstrac-kr.herokuapp.com/api/activities",
+    `http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}activities`,
     {
       method: "POST",
       headers: {
@@ -26,8 +26,9 @@ export const newActivity = async (token, name, description) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        name: name,
-        description: description,
+        activivityId: activivityId,
+        count: count,
+        duration: duration
       }),
     }
   );
