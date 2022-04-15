@@ -15,25 +15,65 @@ export const fetchActivities = async () => {
   return data;
 };
 
-export const newActivity = async (token, routineId, activivityId, count, duration) => {
-  console.log(token, "new routine");
-  const response = await fetch(
-    `http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}activities`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        activivityId: activivityId,
-        count: count,
-        duration: duration
-      }),
-    }
-  );
-  const data = await response.json();
-  console.log(data, "data");
+export const addActivity = async (
+  token,
+  routineId,
+  activityId,
+  count,
+  duration
+) => {
+  try {
+    console.log( token,
+      routineId,
+      activityId,
+      count,
+      duration, "!!!!!!!!!!")
+    const response = await fetch(
 
-  return data;
+      `http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}/activities`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          activityId: activityId,
+          count: count,
+          duration: duration,
+        }),
+      }
+    );
+    const data = await response.json();
+    console.log(data, "data");
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const newActivity = async (token, name, description) => {
+  try {
+    const response = await fetch(
+      "http://fitnesstrac-kr.herokuapp.com/api/activities",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: name,
+          description: description,
+        }),
+      }
+    );
+    const data = await response.json();
+    console.log(data, "data");
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };

@@ -1,65 +1,59 @@
-import React, {useState} from 'react';
-import { Navigate } from 'react-router-dom';
-import  addActivitytoRoutine from '../api/Activities';
+import React, { useState } from "react";
+import { addActivity} from "../api/Activities";
 
-const AttachActivity = () => {
-    const [count, setCount] = useState(Number)
-    const [duration, setDuration] = useState(Number)
-    const [activityId, setActivityId] = useState([])
-    const [newActivity, setNewActivity] = useState([]);
-    
+  const AttachActivity = ({ routineId, activities}) => {
+  const [count, setCount] = useState([]);
+  const [duration, setDuration] = useState([]);
+  const [activityId, setActivityId] = useState(null);
+  const token = localStorage.getItem("token");
 
-    const activitySubmit = async ()=>{
-        try {
-            const result = await addActivitytoRoutine(
-                localStorage.getItem("token"),
-                count,
-                duration,
-                activityId
-            );
-        if (result){
 
-        }
+  return (
+    <div>
+      <form
+        className="postCard"
+        onSubmit={async (e) => {
+          e.preventDefault();
+          await addActivity(token, routineId, activityId, count, duration);
+        }}
+      >
+        <h2>Add Activity</h2>
+        <div>Select activity</div>
 
-        
-        } catch (error) {
-            throw error;
-        }
-    setCount(Number);
-    setDuration(Number);
-    }
 
-    return (
-        <div>
-          <form className="postCard" onSubmit={activitySubmit}>
-            <input
-              className="count"
-              type="text"
-              placeholder="count"
-              value={count}
-              onChange={(event) => setCount(event.target.value)}
-            ></input>
-            <input
-              className="duration"
-              type="text"
-              placeholder="duration"
-              value={duration}
-              onChange={(event) => setDuration(event.target.value)}
-            ></input>
-            <input
-              className="activity"
-              type="text"
-              placeholder="activity"
-              value={newActivity}
-              onChange={(event) => setNewActivity(event.target.value)}
-            ></input>
-            <div className="cardBtn">
-              <button type="submit">Add Activity</button>
-            </div>
-          </form>
+       <select
+          onChange={(e) => {
+            e.preventDefault();
+            setActivityId(e.target.value);
+          }}
+        >
+          {activities.map((activity) => (
+            <option key={activity.id} value={activity.id}>
+              {activity.name}
+            </option>
+          ))}
+        </select>
+        <input
+          className="count"
+          type="text"
+          placeholder="count"
+          value={count}
+          onChange={(event) => setCount(event.target.value)}
+        ></input>
+        <input
+          className="duration"
+          type="text"
+          placeholder="duration"
+          value={duration}
+          onChange={(event) => setDuration(event.target.value)}
+        ></input>
+
+        <div className="cardBtn">
+          <button type="submit">Add Activity</button>
         </div>
-      );
-    };
-
+      </form>
+    </div>
+  );
+};
 
 export default AttachActivity;

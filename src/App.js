@@ -83,8 +83,8 @@ function App() {
               />
             }
           />
-          <Route path="/MyRoutines" element={<MyRoutines/>} />
-          <Route path="/" element={<Routines />} />
+          <Route path="/MyRoutines" element={<MyRoutines userObj={userObj}/>} />
+          <Route path="/" element={<Routines  activities={activities}/>} />
         </Routes>
       </BrowserRouter>
     </div>
