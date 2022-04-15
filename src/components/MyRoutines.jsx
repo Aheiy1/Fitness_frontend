@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { fetchMyRoutines } from "../api/Routines";
-import SingleRoutine from "./SingleRoutine";
 
-const MyRoutines = () => {
+import SingleRoutine from "./SingleRoutine";
+import AttachActivity from "./AttachActivity";
+const MyRoutines = ({routines, activities}) => {
   const [myRoutines, setMyRoutines] = useState([]);
 
   const [token, setmytoken] = useState("");
@@ -42,6 +43,7 @@ const MyRoutines = () => {
             );
           })}
         </div>
+  
       </>
     );
   } else {
