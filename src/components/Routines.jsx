@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getRoutines, deleteRoutine } from "../api/Routines";
 import AttachActivity from "./AttachActivity";
 
-
-const Routines = ({activities}) => {
+const Routines = ({ activities }) => {
   const [routines, setRoutines] = useState([]);
   const token = localStorage.getItem("token");
   const username = localStorage.getItem("username");
@@ -27,18 +26,18 @@ const Routines = ({activities}) => {
         <div className="description">{routine.goal}</div>
         <h3 className="author">Creator </h3>
         <div id="author"> {routine.creatorName}</div>
-  
+
         {username === routine.creatorName ? (
           <button
-          onClick={async () => {
-            const routineId = routine.id;
-            await deleteRoutine(token, routineId);
-          }}
+            onClick={async () => {
+              const routineId = routine.id;
+              await deleteRoutine(token, routineId);
+            }}
           >
             Delete Routine
           </button>
         ) : null}
-  
+
         <h1 className="title">Activities</h1>
         {routine.activities.map((activity, i) => {
           return (
@@ -54,12 +53,15 @@ const Routines = ({activities}) => {
             </div>
           );
         })}
-         {username === routine.creatorName ? (
-        <AttachActivity routineId ={ routine.id} routines ={routines} activities={activities}
-              />
-              ) : null}
+        {username === routine.creatorName ? (
+          <AttachActivity
+            routineId={routine.id}
+            routines={routines}
+            activities={activities}
+          />
+        ) : null}
       </div>
-    )
+    );
   });
 };
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 
-// import { Routines } from './components'
 import {
   Register,
   Login,
@@ -13,7 +12,6 @@ import {
   CreateActivity,
   Navbar,
   Activities,
- 
 } from "./components";
 import { fetchMe } from "../src/api/Users";
 import { fetchActivities } from "../src/api/Activities";
@@ -21,7 +19,7 @@ import { getRoutines } from "../src/api/Routines";
 
 function App() {
   const [token, setToken] = useState("");
-  // const [postId, setPostId] = useState(null);
+
   const [userObj, setUserObj] = useState({});
   const [routines, setRoutines] = useState([]);
   const [activities, setActivities] = useState([]);
@@ -83,8 +81,17 @@ function App() {
               />
             }
           />
-          <Route path="/MyRoutines" element={<MyRoutines userObj={userObj}/>} />
-          <Route path="/" element={<Routines  activities={activities}/>} />
+          <Route
+            path="/MyRoutines"
+            element={
+              <MyRoutines
+                userObj={userObj}
+                routines={routines}
+                activities={activities}
+              />
+            }
+          />
+          <Route path="/" element={<Routines activities={activities} />} />
         </Routes>
       </BrowserRouter>
     </div>

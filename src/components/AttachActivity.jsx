@@ -6,14 +6,13 @@ const AttachActivity = ({ routineId, activities }) => {
   const [duration, setDuration] = useState([]);
   const [activityId, setActivityId] = useState(null);
   const token = localStorage.getItem("token");
-
   return (
     <div>
       <form
         className="postCard"
         onSubmit={async (e) => {
           e.preventDefault();
-          await addActivity(token, routineId, activityId, count, duration);
+         await addActivity(token, routineId, activityId, count, duration);
         }}
       >
         <h2>Add Activity</h2>
@@ -25,11 +24,13 @@ const AttachActivity = ({ routineId, activities }) => {
             setActivityId(e.target.value);
           }}
         >
-          {activities.map((activity) => (
-            <option key={activity.id} value={activity.id}>
-              {activity.name}
-            </option>
-          ))}
+          {activities.map((activity) => {
+            return (
+              <option key={activity.id} value={activity.id}>
+                {activity.name}
+              </option>
+            );
+          })}
         </select>
         <input
           className="count"

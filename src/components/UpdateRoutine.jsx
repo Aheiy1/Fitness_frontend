@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 const UpdateRoutine = ({
-  routines,
-  setRoutines,
   routineId,
   setRoutineId,
   myRoutines,
@@ -34,7 +32,6 @@ const UpdateRoutine = ({
     const data = await response.json();
 
     if (data && data.name) {
-      console.log(myRoutines);
       const newRoutines = myRoutines.map((routine) => {
         if (routine.id === routineId) {
           console.log(data);
@@ -43,9 +40,9 @@ const UpdateRoutine = ({
           return routine;
         }
       });
-      console.log(newRoutines);
+
       setMyRoutines(newRoutines);
-      console.log(myRoutines);
+
       setRoutineId(null);
     }
   };

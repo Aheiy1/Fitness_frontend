@@ -14,12 +14,12 @@ const Navbar = () => {
           My Routines
         </Link>
         <Link className="link" to="/CreateActivity">
-         Create Activity
+          Create Activity
         </Link>
         <Link className="link" to="/Activities">
           Activities
         </Link>
-      
+
         <Link className="link" to="/CreateRoutine">
           Create Routine
         </Link>
@@ -35,7 +35,6 @@ const Navbar = () => {
           </Link>
         </div>
       ) : (
-
         <div className="btn">
           <Link className="log" to="/LogOut">
             <LogOut />
