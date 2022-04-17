@@ -7,7 +7,6 @@ import SingleActivity from "./SingleActivity";
 const Activities = () => {
   const [activities, setActivities] = useState([]);
 
-
   useEffect(() => {
     const getAllActivities = async () => {
       const AllActivities = await fetchActivities();

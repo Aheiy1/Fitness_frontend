@@ -5,20 +5,18 @@ import { useNavigate } from "react-router-dom";
 const Login = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  let navigate = useNavigate ();
+  let navigate = useNavigate();
 
   const userSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, "Username")
-    console.log(password, "password")
 
     try {
       const result = await fetchLoginResults(username, password);
-      console.log(result, "result from login")
+
       if (result.token) {
         localStorage.setItem("token", result.token);
         localStorage.setItem("username", username);
-        localStorage.setItem("creatorId", result.user.id)
+        localStorage.setItem("creatorId", result.user.id);
         setToken(result.token);
       }
     } catch (error) {
@@ -26,7 +24,7 @@ const Login = ({ setToken }) => {
     } finally {
       setUsername("");
       setPassword("");
-      navigate('/', {replace: true});
+      navigate("/", { replace: true });
     }
   };
 

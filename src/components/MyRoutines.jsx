@@ -3,7 +3,7 @@ import { fetchMyRoutines } from "../api/Routines";
 
 import SingleRoutine from "./SingleRoutine";
 import AttachActivity from "./AttachActivity";
-const MyRoutines = ({routines, activities}) => {
+const MyRoutines = ({ routines, activities }) => {
   const [myRoutines, setMyRoutines] = useState([]);
 
   const [token, setmytoken] = useState("");
@@ -13,11 +13,11 @@ const MyRoutines = ({routines, activities}) => {
     setmytoken(localStorage.getItem("token"));
     setStoredName(localStorage.getItem("username"));
   }, []);
+
   useEffect(() => {
     if (storedName) {
       async function getMyRoutines() {
         const routines = await fetchMyRoutines(token, storedName);
-
         setMyRoutines(routines);
       }
       getMyRoutines();
@@ -39,11 +39,16 @@ const MyRoutines = ({routines, activities}) => {
                   myRoutines={myRoutines}
                   setMyRoutines={setMyRoutines}
                 />
+
+                <AttachActivity
+                  routineId={routine.id}
+                  routines={myRoutines}
+                  activities={activities}
+                />
               </>
             );
           })}
         </div>
-  
       </>
     );
   } else {

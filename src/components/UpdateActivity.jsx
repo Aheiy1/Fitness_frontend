@@ -9,11 +9,9 @@ const UpdateActivity = ({
   const [name, setName] = useState([]);
   const [description, setDescription] = useState([]);
   const token = localStorage.getItem("token");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("name", name);
-    console.log("description", description);
     const response = await fetch(
       `http://fitnesstrac-kr.herokuapp.com/api/activities/${activityId}`,
       {
@@ -30,7 +28,7 @@ const UpdateActivity = ({
     );
 
     const data = await response.json();
-    console.log(data);
+
     if (data && data.name) {
       const newActivities = activities.map((activity) => {
         if (activity.id === activityId) {

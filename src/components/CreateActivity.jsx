@@ -6,18 +6,17 @@ const CreateActivity = ({ activities, setActivities }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   let navigate = useNavigate();
+  
   const userSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      console.log(localStorage.getItem("token"));
       const result = await newActivity(
         localStorage.getItem("token"),
         name,
         description
       );
 
-      console.log(result, "result");
       if (result.name) {
         setActivities([...activities, result.name]);
       }
@@ -26,9 +25,7 @@ const CreateActivity = ({ activities, setActivities }) => {
     }
     setName("");
     setDescription("");
-    // setPrice("");
-    // setWillDeliver(false);
-    navigate('/Activities', {replace: true});
+    navigate("/Activities", { replace: true });
   };
   return (
     <div>

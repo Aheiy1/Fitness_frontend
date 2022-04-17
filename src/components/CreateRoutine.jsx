@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { newRoutine } from "../api/Routines";
 import { useNavigate } from "react-router-dom";
 
-
 const CreateRoutine = ({ routines, setRoutines }) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
@@ -26,34 +25,33 @@ const CreateRoutine = ({ routines, setRoutines }) => {
     }
     setName("");
     setGoal("");
-    // setPrice("");
-    // setWillDeliver(false);
     navigate("/MyRoutines");
   };
   return (
     <div>
-        {localStorage.getItem("token") ? (
-      <form className="postCard" onSubmit={userSubmit}>
-        <input
-          className="name"
-          type="text"
-          placeholder="title"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-        ></input>
-        <input
-          className="goal"
-          type="text"
-          placeholder="goal"
-          value={goal}
-          onChange={(event) => setGoal(event.target.value)}
-        ></input>
-        <div className="cardBtn">
-          <button type="submit">Create Routine</button>
-        </div>
-      </form>
-     
-      ) : <h1>Please Log In</h1> }
+      {localStorage.getItem("token") ? (
+        <form className="postCard" onSubmit={userSubmit}>
+          <input
+            className="name"
+            type="text"
+            placeholder="title"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          ></input>
+          <input
+            className="goal"
+            type="text"
+            placeholder="goal"
+            value={goal}
+            onChange={(event) => setGoal(event.target.value)}
+          ></input>
+          <div className="cardBtn">
+            <button type="submit">Create Routine</button>
+          </div>
+        </form>
+      ) : (
+        <h1>Please Log In</h1>
+      )}
     </div>
   );
 };
